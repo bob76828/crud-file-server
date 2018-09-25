@@ -26,6 +26,13 @@ exports.handleRequest = function(vpath, path, req, res, readOnly, logHeadRequest
 		try {			
 			res.statusCode = code;
 			res.setHeader('Content-Type', 'application/json');
+
+			// Website you wish to allow to connect
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Methods','GET,HEAD,PUT,PATCH,POST,DELETE');
+			res.setHeader('Access-Control-Allow-Credentials', true);
+			res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+			
 			res.end(JSON.stringify(err));	
 		} catch(resErr) {
 			console.log('failed to write error to response: ' + resErr);
